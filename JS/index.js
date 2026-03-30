@@ -57,7 +57,7 @@ const displayPets = (pets) => {
 
         petCard.innerHTML = `
 
-        <div  class="bg-white border border-gray-500 rounded-xl p-4">
+        <div  class="bg-white border border-gray-300 rounded-xl shadow p-4">
 
                         <img src="${pet?.image}" class="w-full h-[160px] object-cover rounded-lg mb-3" />
 
@@ -72,7 +72,7 @@ const displayPets = (pets) => {
 
                         <div class="flex items-center gap-2 mt-4">
                         
-                             <button onclick="likePet('${pet.image}')" class=" cursor-pointer bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
+                             <button onclick="likePet('${pet.image}')" class=" cursor-pointer bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-300 rounded shadow">
                                     <img class="w-5" src="https://img.icons8.com/?size=100&id=66628&format=png&color=000000" alt="">
                              </button>
 
