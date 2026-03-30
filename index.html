@@ -13,12 +13,33 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
-<body>
+<body class="scroll-smooth">
 
     <!-- Header Section -->
     <header>
-        <h1>Header</h1>
-        <nav>
+        <!-- Navigation -->
+        <nav class="w-11/12 mx-auto mt-8">
+
+            <div class="navbar bg-base-100">
+
+                <div class="navbar-start">
+                    <a class="btn btn-ghost text-xl"><img src="images/logo.webp" alt=""><span
+                            class="ml-2 font-bold text-2xl">Peddy</span></a>
+                </div>
+                <div class="navbar-center hidden lg:flex">
+                    <ul class="menu menu-horizontal px-1">
+                        <li><a>Home</a></li>
+                        <li><a>Shop</a></li>
+                        <li><a>Contact</a></li>
+                    </ul>
+                </div>
+                <div class="navbar-end">
+
+                    <a class="btn btn-ghost"><img class="w-8"
+                            src="https://img.icons8.com/?size=100&id=7820&format=png&color=000000" alt=""></a>
+                </div>
+
+            </div>
 
 
         </nav>
@@ -26,18 +47,167 @@
 
     <!-- Main Section -->
 
-    <main>
+    <main class="w-11/12 mx-auto">
+        <!-- Banner / Hero Section -->
+        <section>
+            <div class="hero min-h-screen">
+                <div class="hero-content text-center">
+                    <div class="max-w-xl">
+                        <p class="py-6 font-semibold text-xl text-gray-700">
+                            Bringing Families Together ❤️‍🔥
+                        </p>
+                        <h1 class="text-5xl font-bold">
+                            Your Path to Adoption Starts Here</h1>
+                        <p class="py-6">
+                            It is a long established fact that a reader will be distracted by the readable content of a
+                            page when looking at its layout. The point of using Lorem Ipsum is that it has a.
+                        </p>
+                        <a href="#showPetsSection" class="btn p-7 px-10 rounded-2xl bg-teal-600 text-white">
+                            View More
+                        </a>
+                        <div>
+                            <img class="w-full mt-8" src="images/pet.webp" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Banner / Hero Section End  -->
 
-        <h2>Main</h2>
+
+        <!-- Adopt title section -->
+        <section class="flex items-center justify-center">
+            <div class="text-center ">
+                <h1 class="text-5xl mx-auto max-w-xl font-bold">Your Path to Adoption Starts Here</h1>
+                <p class="py-6 mx-auto max-w-2xl">
+                    It is a long established fact that a reader will be distracted by the readable content of a
+                    page when looking at its layout. The point of using Lorem Ipsum is that it has a.
+                </p>
+            </div>
+        </section>
+
+
+        <!-- nav -->
+
+
+        <div id="petsCategory" class="w-11/12 mx-auto gap-5 items-center text-center justify-center flex">
+
+        </div>
+
+        <button onclick="likePet('${pet.image}')"
+            class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
+            <img class="w-6" src="https://img.icons8.com/?size=100&id=66628&format=png&color=000000" alt="">
+        </button>
+
+        <!-- Sorting  -->
+
+        <section>
+            <div class="flex flex-col md:flex-row items-center justify-between py-6 px-4 bg-white">
+
+                <h2 class="text-xl font-bold text-gray-900 mb-4 md:mb-0">
+                    Best Deal For you
+                </h2>
+
+                <button
+                    class=" bg-teal-500  hover:bg-[#0a5e63] text-white font-bold py-3 px-5 rounded-xl transition-colors duration-200">
+                    Sort by Price
+                </button>
+
+            </div>
+        </section>
+
+
+        <!-- Section ShowPets -->
+
+        <section id="showPetsSection">
+
+
+            <div class="grid lg:grid-cols-4">
+
+
+                <!-- Cards -->
+                <div id="showPets" class=" rounded-md my-5 p-10 bg-gray-200 lg:col-span-3 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                    <!-- Card -->
+                    <!--  -->
+
+                </div>
+
+
+                <!-- Right Gallery -->
+                <div class="bg-white border border-gray-200 rounded-xl p-3">
+                    <div id="likedPets" class="grid grid-cols-2 gap-2">
+
+
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+        </section>
+
+
 
     </main>
 
+
+
+
     <!-- Footer Section -->
 
-    <footer>
+    <footer class="bg-black text-gray-300 px-6 py-12">
+        <div class="max-w-7xl mx-auto grid gap-10 md:grid-cols-3">
 
-        <h3>Footer</h3>
+            <!-- Left Section -->
+            <div>
+                <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                    🐾 Peddy
+                </h2>
 
+                <p class="mt-4 text-sm">
+                    Location: av. Washington 165, NY CA 54003
+                </p>
+                <p class="text-sm">Phone: +31 85 964 47 25</p>
+                <p class="text-sm">Email: info@yourdomain.com</p>
+                <p class="text-sm">Openings hours: 9.00 AM - 5.00 PM</p>
+
+                <!-- Social Icons -->
+                <div class="flex gap-4 mt-4 text-xl">
+                    <a href="#" class="hover:text-blue-500">🌐</a>
+                    <a href="#" class="hover:text-white">✖</a>
+                    <a href="#" class="hover:text-red-500">▶</a>
+                    <a href="#" class="hover:text-pink-500">📸</a>
+                </div>
+            </div>
+
+            <!-- Middle Section -->
+            <div>
+                <h3 class="text-white font-semibold mb-4">Useful Links</h3>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-white">Home</a></li>
+                    <li><a href="#" class="hover:text-white">About Us</a></li>
+                    <li><a href="#" class="hover:text-white">Animals</a></li>
+                    <li><a href="#" class="hover:text-white">Foundation</a></li>
+                    <li><a href="#" class="hover:text-white">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Right Section -->
+            <div>
+                <h3 class="text-white font-semibold mb-4">Drop a Message</h3>
+
+                <input type="email" placeholder="Enter your email"
+                    class="w-full px-4 py-2 rounded-md bg-gray-800 text-sm focus:outline-none" />
+
+                <button class="mt-4 w-full bg-teal-600 hover:bg-teal-700 text-white py-2 rounded-md">
+                    Subscribe
+                </button>
+            </div>
+
+        </div>
     </footer>
 
 
