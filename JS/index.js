@@ -47,9 +47,11 @@ const displayPets = (pets) => {
     if (pets.length === 0) {
         petsContainer.innerHTML = `
             <div class="col-span-full flex flex-col justify-center items-center py-20 bg-gray-50 rounded-3xl">
-                <img src="https://img.icons8.com/papercut/100/no-data.png" />
+                <img src="./images/error.webp" />
                 <h2 class="text-2xl font-bold mt-4">No Information Available</h2>
-            </div>
+                <p class=" text-center w-9/12 mt-5 mx-auto">It is a long established fact that a reader will be distracted by the readable content of a page when looking
+            at
+            its layout. The point of using Lorem Ipsum is that it has a.</p>
         `;
         return;
     }
@@ -72,13 +74,14 @@ const displayPets = (pets) => {
                         <img class="w-5" src="https://img.icons8.com/?size=100&id=66628&format=png&color=000000" alt="">
                     </button>
                     <button class="btn flex-1 text-xs py-2 bg-teal-500 text-white rounded-md">Adopt</button>
-                    <button class="btn flex-1 text-xs py-2 border rounded-md text-gray-600">Details</button>
+                    <button onclick = "loadPetDetails('${pet.petId}')" class="btn flex-1 text-xs py-2 border rounded-md text-gray-600">Details</button>
                 </div>
             </div>
         `;
         petsContainer.append(petCard);
     });
 }
+
 
 // Licked Pets
 const likePet = (img) => {
@@ -91,17 +94,98 @@ const likePet = (img) => {
     container.appendChild(image);
 }
 
+// Remove class Function
 
+const removeClass = () =>{
+
+    const buttons = document.getElementsByClassName("btn-category")
+    for(let btn of buttons){
+        btn.classList.remove("active")
+    }
+
+}
 
 
 const loadCategoryPets = (id) => {
-    alert(id);
     fetch(`https://openapi.programming-hero.com/api/peddy/category/${id}`)
         .then((res) => res.json())
-        .then((data) => displayPets(data.data))
+        .then((data) => {
+            const activeButton = document.getElementById(`btn-${id}`);
+            removeClass()
+            activeButton.classList.add("active");
+            displayPets(data.data);
+        })
         .catch((error) => console.log(error));
 }
+// Load Pet details
 
+const loadPetDetails = async (petId) => {
+    const url = (`https://openapi.programming-hero.com/api/peddy/pet/${petId}`)
+    const res = await fetch(url)
+    const data = await res.json()
+    detailsModalshow(data.petData)
+
+}
+
+
+const detailsModalshow = (pet) => {
+
+    const modalContent = document.getElementById("modalContent")
+    modalContent.innerHTML = `
+    
+
+     <div class="overflow-hidden bg-white rounded-2xl shadow-xl border border-gray-100">
+      <div class="w-full h-64 overflow-hidden">
+        <img 
+          src="${pet.image}" 
+          alt="${pet.pet_name}" 
+          class="w-full h-full object-cover"
+        />
+      </div>
+
+      <div class="p-6 text-left">
+        <h2 class="text-2xl font-extrabold text-gray-900 mb-4">${pet.pet_name}</h2>
+        
+        <div class="grid grid-cols-2 gap-y-3 mb-6 text-sm text-gray-600">
+          <div class="flex items-center gap-2">
+            <span class="opacity-70">📁</span> 
+            <span class="font-semibold">Breed:</span> ${pet.breed}
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="opacity-70">📅</span> 
+            <span class="font-semibold">Birth:</span> ${new Date(pet.date_of_birth).getFullYear()}
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="opacity-70">♀️</span> 
+            <span class="font-semibold">Gender:</span> ${pet.gender}
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="opacity-70">💰</span> 
+            <span class="font-semibold">Price:</span> ${pet.price}$
+          </div>
+          <div class="flex items-center gap-2 col-span-2">
+            <span class="opacity-70">💉</span> 
+            <span class="font-semibold">Vaccinated status:</span> ${pet.vaccinated_status}
+          </div>
+        </div>
+
+        <hr class="border-gray-100 mb-5" />
+
+        <div class="mb-8">
+          <h3 class="text-lg font-bold text-gray-800 mb-2">Details Information</h3>
+          <p class="text-gray-500 leading-relaxed text-sm">
+            ${pet.pet_details}
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    
+    `
+  
+
+    document.getElementById("petDetailsModal").showModal()
+}
 // Display Category Buttons
 const displayCategories = (pets) => {
 
@@ -112,12 +196,12 @@ const displayCategories = (pets) => {
         const buttonContainer = document.createElement("div");
         buttonContainer.classList = "";
         buttonContainer.innerHTML = `
-            <button onclick = "loadCategoryPets('${item.category}')" class="flex cursor-pointer items-center gap-3 px-6 py-3 border border-slate-100 rounded-xl bg-white shadow-sm font-bold text-slate-800">
+            <button id="btn-${item.category}" onclick = "loadCategoryPets('${item.category}')" class=" btn-category flex cursor-pointer items-center gap-3 px-6 py-3 border border-slate-100 rounded-xl bg-white shadow-sm font-bold text-slate-800">
                     <img src="${item.category_icon}" alt="Dog" class="w-8 h-8">
                     <span>${item.category}</span>
             </button>
         `
-        
+
         // add button to category
         petContainer.append(buttonContainer);
     });
